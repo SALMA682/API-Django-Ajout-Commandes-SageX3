@@ -14,7 +14,6 @@ from .models import Commande
 from .serializers import CommandeSerializer
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def get_clients(request):
     url_sage = "http://192.168.1.110:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"
     sage_user = "admin"
@@ -114,7 +113,6 @@ def get_clients(request):
         }, status=500)
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def get_articles(request):
     url_sage = "http://192.168.1.110:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"
     sage_user = "admin"
@@ -211,7 +209,6 @@ def get_articles(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def get_sites(request):
     url_sage = "http://192.168.1.110:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"
     sage_user = "admin"
@@ -382,7 +379,6 @@ def get_sohnum_from_sage_response(response_content):
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
 def valider_commande(request):
     data = request.data
     entete = data.get('entete', {})
@@ -471,7 +467,6 @@ def valider_commande(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def get_client_details(request, code_client):
     url_sage = "http://192.168.1.110:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"
     sage_user = "admin"
@@ -572,7 +567,6 @@ import requests
 import xml.etree.ElementTree as ET
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
 def get_article_stock(request):
     print("Données reçues :", request.data)
     site = request.data.get("site")
@@ -669,7 +663,6 @@ def get_article_stock(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def get_article_details(request, code_article):
     url_sage = "http://192.168.1.110:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"
     sage_user = "admin"
@@ -771,7 +764,6 @@ def get_article_details(request, code_article):
 
 from rest_framework import status
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
 def save_commande(request):
     try:
         # On récupère les champs envoyés
@@ -811,7 +803,6 @@ def save_commande(request):
         )
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def commandes_validees(request):
     # On filtre par l'utilisateur connecté + statut validée
     commandes = Commande.objects.filter(user=request.user, statut='validee').order_by('-date_created')
@@ -846,7 +837,6 @@ def nettoyer_codes_articles(data_formulaire: dict) -> dict:
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def commandes_non_validees(request):
     commandes = Commande.objects.filter(
         user=request.user,
