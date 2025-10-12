@@ -16,8 +16,8 @@ from .serializers import CommandeSerializer
 @api_view(['GET'])
 def get_clients(request):
     url_sage = "http://192.168.1.110:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"
-    sage_user = "admin"
-    sage_password = "Bridge@2025"
+    sage_user = "username"
+    sage_password = "pwd"
 
     xml_request = """<?xml version="1.0" encoding="utf-8"?>
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
@@ -115,8 +115,8 @@ def get_clients(request):
 @api_view(['GET'])
 def get_articles(request):
     url_sage = "http://192.168.1.110:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"
-    sage_user = "admin"
-    sage_password = "Bridge@2025"
+    sage_user = "username"
+    sage_password = "pwd"
 
     xml_request = """<?xml version="1.0" encoding="utf-8"?>
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
@@ -211,8 +211,8 @@ def get_articles(request):
 @api_view(['GET'])
 def get_sites(request):
     url_sage = "http://192.168.1.110:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"
-    sage_user = "admin"
-    sage_password = "Bridge@2025"
+    sage_user = "username"
+    sage_password = "pwd"
 
     xml_request = """<?xml version="1.0" encoding="utf-8"?>
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
@@ -440,7 +440,7 @@ def valider_commande(request):
             data=soap_envelope,
             headers={'Content-Type': 'text/xml; charset=utf-8', 
                      "SOAPAction": "save"},
-            auth=('admin', 'Bridge@2025')
+            auth=('username', 'pwd')
         )
 
     except requests.RequestException as e:
@@ -469,8 +469,8 @@ def valider_commande(request):
 @api_view(['GET'])
 def get_client_details(request, code_client):
     url_sage = "http://192.168.1.110:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"
-    sage_user = "admin"
-    sage_password = "Bridge@2025"
+    sage_user = "username"
+    sage_password = "pwd"
 
     xml_request = f"""<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
                                         xmlns:wss="http://www.adonix.com/WSS"
@@ -577,8 +577,8 @@ def get_article_stock(request):
         return JsonResponse({"error": "Champs manquants (site, date, article)"}, status=400)
 
     url_sage = "http://192.168.1.110:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"
-    sage_user = "admin"
-    sage_password = "Bridge@2025"
+    sage_user = "username"
+    sage_password = "pwd"
 
     # Construction de la requête SOAP avec inputXml encodé
     xml_request = f"""<?xml version="1.0" encoding="utf-8"?>
@@ -665,8 +665,8 @@ def get_article_stock(request):
 @api_view(['GET'])
 def get_article_details(request, code_article):
     url_sage = "http://192.168.1.110:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"
-    sage_user = "admin"
-    sage_password = "Bridge@2025"
+    sage_user = "username"
+    sage_password = "pwd"
 
     xml_request = f"""<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
                                         xmlns:wss="http://www.adonix.com/WSS"
